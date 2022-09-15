@@ -18,7 +18,9 @@ NEWSPIDER_MODULE = 'immoscout24.spiders'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
-FEED_EXPORT_FIELDS = ["full_address", "description", "rooms", "area", "price", "labels", "property_link", "contact", "company"]
+
+# just for realestate spider
+# FEED_EXPORT_FIELDS = ["full_address", "description", "rooms", "area", "price", "labels", "property_link", "contact", "company"]
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
