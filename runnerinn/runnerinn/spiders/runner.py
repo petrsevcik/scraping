@@ -40,7 +40,7 @@ class RunnerSpider(scrapy.Spider):
             "x-requested-with": "XMLHttpRequest"
         }
 
-        body = f'vars%5B%5D=id_familia%3D10002&vars%5B%5D=atributos_e%3D5091%2C6017&vars%5B%5D=model.eng%3Bmodel.eng%3Bvideo_mp4%3Bid_marca%3Bprecio_tachado%3Bsostenible%3Bproductes.talla2%3Bproductes.talla_usa%3Bproductes.talla_jp%3Bproductes.talla_uk%3Btres_sesenta%3Batributos_padre.atributos.id_atribut_valor%3Bproductes.v360%3Bproductes.v180%3Bproductes.v90%3Bproductes.v30%3Bproductes.exist%3Bproductes.stock_reservat%3Bproductes.pmp%3Bproductes.id_producte%3Bproductes.color%3Bproductes.referencia%3Bproductes.brut%3Bproductes.desc_brand%3Bimage_created%3Bid_modelo%3Bfamilias.eng%3Bfamilias.eng%3Bfamilias.id_familia%3Bfamilias.subfamilias.eng%3Bfamilias.subfamilias.eng%3Bfamilias.subfamilias.id_tienda%3Bfamilias.subfamilias.id_subfamilia%3Bproductes.talla%3Bproductes.baja%3Bproductes.rec%3Bprecio_win_209%3Bproductes.sellers.id_seller%3Bproductes.sellers.precios_paises.precio%3Bproductes.sellers.precios_paises.id_pais%3Bfecha_descatalogado%3Bmarca%3Bproductes.talla_uk&vars%5B%5D=v30_sum%3Bdesc%40tm10%3Basc&vars%5B%5D=48&vars%5B%5D=productos&vars%5B%5D=search&vars%5B%5D=id_subfamilia%3D10005&vars%5B%5D=96&texto_search='
+        body = f'vars%5B%5D=id_familia%3D10002&vars%5B%5D=atributos_e%3D5091%2C6017&vars%5B%5D=model.eng%3Bmodel.eng%3Bvideo_mp4%3Bid_marca%3Bprecio_tachado%3Bsostenible%3Bproductes.talla2%3Bproductes.talla_usa%3Bproductes.talla_jp%3Bproductes.talla_uk%3Btres_sesenta%3Batributos_padre.atributos.id_atribut_valor%3Bproductes.v360%3Bproductes.v180%3Bproductes.v90%3Bproductes.v30%3Bproductes.exist%3Bproductes.stock_reservat%3Bproductes.pmp%3Bproductes.id_producte%3Bproductes.color%3Bproductes.referencia%3Bproductes.brut%3Bproductes.desc_brand%3Bimage_created%3Bid_modelo%3Bfamilias.eng%3Bfamilias.eng%3Bfamilias.id_familia%3Bfamilias.subfamilias.eng%3Bfamilias.subfamilias.eng%3Bfamilias.subfamilias.id_tienda%3Bfamilias.subfamilias.id_subfamilia%3Bproductes.talla%3Bproductes.baja%3Bproductes.rec%3Bprecio_win_209%3Bproductes.sellers.id_seller%3Bproductes.sellers.precios_paises.precio%3Bproductes.sellers.precios_paises.id_pais%3Bfecha_descatalogado%3Bmarca%3Bproductes.talla_uk&vars%5B%5D=v30_sum%3Bdesc%40tm10%3Basc&vars%5B%5D=1448&vars%5B%5D=productos&vars%5B%5D=search&vars%5B%5D=id_subfamilia%3D10004&vars%5B%5D=96&texto_search='
         data = {
             'vars[]': [
                 'id_familia=10002',
@@ -71,10 +71,13 @@ class RunnerSpider(scrapy.Spider):
     def parse_shoes(data):
         brand = data.get("marca")
         model = data.get("nombre_modelo")
+        model_id = data.get("id_modelo")
+        picture = f"https://www.tradeinn.com/f/{model_id[:5]}/{model_id}/{brand}-{model}.jpg".replace(" ", "-")
         availability = RunnerSpider.parse_size_price_color(data)
         return {
             "brand": brand,
             "model": model,
+            "picture": picture,
             "availability": availability
         }
 
