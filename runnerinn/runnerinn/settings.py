@@ -11,6 +11,9 @@ BOT_NAME = 'runnerinn'
 
 SPIDER_MODULES = ['runnerinn.spiders']
 NEWSPIDER_MODULE = 'runnerinn.spiders'
+ITEM_PIPELINES = {"runnerinn.pipelines.CustomImagesPipeline": 1}
+DOWNLOAD_DELAY = 2
+IMAGES_STORE = 'shoes_images'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
